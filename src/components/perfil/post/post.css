@@ -1,0 +1,17 @@
+.post_contenedor {
+	max-width: 640px;
+	width: 100%;
+	margin: 40px auto;
+	border-bottom: 1px solid grey;
+	padding-bottom: 30px;
+}
+
+.post_descripcion {
+	margin-top: 10px;
+}
+
+.post_img {
+	border-radius: 6px;
+	aspect-ratio: 4/5;
+	object-fit: cover;
+}
