@@ -1,5 +1,4 @@
-import { ContenedorHistorias } from "./components/layout/contenedorHistorias/ContenedorHistorias";
-import { Perfil } from "./components/perfil/Perfil";
+import { Carrousel } from "./components/carrousel/Carrousel";
 import { Post } from "./components/post/Post";
 
 import perfilPlaceholder from "./assets/imagen1.jpeg";
@@ -7,44 +6,8 @@ import perfilPlaceholder from "./assets/imagen1.jpeg";
 function App() {
 	return (
 		<>
-			<ContenedorHistorias>
-				<Perfil
-					type="historia"
-					seen={false}
-					userName="pepita"
-					profilePic={perfilPlaceholder}
-				/>
-				<Perfil
-					type="historia"
-					seen={true}
-					userName="nenita"
-					profilePic={perfilPlaceholder}
-				/>
-				<Perfil
-					type="historia"
-					seen={true}
-					userName="monita"
-					profilePic={perfilPlaceholder}
-				/>
-				<Perfil
-					type="historia"
-					seen={false}
-					userName="bebita"
-					profilePic={perfilPlaceholder}
-				/>
-				<Perfil
-					type="historia"
-					seen={true}
-					userName="calita"
-					profilePic={perfilPlaceholder}
-				/>
-				<Perfil
-					type="historia"
-					seen={false}
-					userName="martita"
-					profilePic={perfilPlaceholder}
-				/>
-			</ContenedorHistorias>
+			<Carrousel />
+
 			<div className="contenedor_posteos" style={{ marginTop: "40px" }}>
 				<Post
 					seen={false}
