@@ -1,11 +1,14 @@
 import { Carrousel } from "./components/carrousel/Carrousel";
+import { Navbar } from "./components/layout/navbar/Navbar";
 import { Post } from "./components/post/Post";
 
 import perfilPlaceholder from "./assets/imagen1.jpeg";
 
-function App() {
+function App({ userName, setIsLoggedIn }) {
 	return (
 		<>
+			<Navbar userName={userName} setIsLoggedIn={setIsLoggedIn} />
+
 			<Carrousel />
 
 			<div className="contenedor_posteos" style={{ marginTop: "40px" }}>

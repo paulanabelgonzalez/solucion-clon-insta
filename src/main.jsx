@@ -7,6 +7,6 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<LoginWrapper isLoggedIn={true} />
+		<LoginWrapper />
 	</React.StrictMode>
 );
