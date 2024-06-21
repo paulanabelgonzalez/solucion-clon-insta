@@ -1,6 +1,7 @@
 import { Carrousel } from "./components/carrousel/Carrousel";
 import { Navbar } from "./components/layout/navbar/Navbar";
 import { Post } from "./components/post/Post";
+import { SlideInfinito } from "./components/slideInfinito/SlideInfinito";
 
 import perfilPlaceholder from "./assets/imagen1.jpeg";
 
@@ -10,6 +11,8 @@ function App({ userName, setIsLoggedIn }) {
 			<Navbar userName={userName} setIsLoggedIn={setIsLoggedIn} />
 
 			<Carrousel />
+
+			<SlideInfinito />
 
 			<div className="contenedor_posteos" style={{ marginTop: "40px" }}>
 				<Post
