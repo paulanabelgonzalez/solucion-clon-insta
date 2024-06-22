@@ -1,4 +1,4 @@
-@keyframes slide {
+/* @keyframes slide {
 	0% {
 		transform: translateX(0);
 	}
@@ -18,4 +18,4 @@
 	animation: 25s slide infinite linear;
 	display: inline-block;
 	width: 2400px;
-}
+} */
