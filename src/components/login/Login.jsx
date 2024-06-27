@@ -16,10 +16,14 @@ export const Login = ({ setIsRegister, setIsLoggedIn }) => {
 
 	const handleSubmitForm = (e) => {
 		e.preventDefault();
+		// formulario no controlado para nada (sin usar estados capturo los valores de los input)
+		// console.log(e.target.nombre.value, e.target.contraseña.value);
+
 		const datos = {
 			usuario: userName,
 			contraseña: password,
 		};
+
 		if (
 			datos.usuario === usuario.usuario &&
 			datos.contraseña === usuario.contraseña
@@ -29,6 +33,13 @@ export const Login = ({ setIsRegister, setIsLoggedIn }) => {
 			alert("Los datos ingresados no coinciden con ningún usuario registrado.");
 		}
 	};
+
+	// const handleCheckInput = (e) => {
+	// 	setUserName(e.target.value);
+	// 	if (userName === "reset") {
+	// 		setUserName("");
+	// 	}
+	// };
 
 	return (
 		<div>
@@ -40,11 +51,13 @@ export const Login = ({ setIsRegister, setIsLoggedIn }) => {
 						type="text"
 						placeholder="Ej: Maria Antonieta"
 						id="nombre"
+						name="nombre"
 						value={userName}
-						onChange={(e) => {
-							setUserName(e.target.value);
-						}}
+						onChange={(e) => setUserName(e.target.value)}
+						// ej:  input controlado
+						// onChange={handleCheckInput}
 					/>
+					{/* <p>nombre:{userName}</p> */}
 				</div>
 
 				<div className="input_container">
@@ -52,6 +65,7 @@ export const Login = ({ setIsRegister, setIsLoggedIn }) => {
 					<input
 						type={typePassword}
 						id="contraseña"
+						name="contraseña"
 						value={password}
 						onChange={(e) => {
 							setPassword(e.target.value);
