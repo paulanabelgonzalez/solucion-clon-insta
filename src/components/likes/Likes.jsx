@@ -4,7 +4,7 @@ import "./likes.css";
 
 export const Likes = () => {
 	const [liked, setLiked] = useState(false);
-	const [cantidadLikes, setCantidadLikes] = useState(1);
+	const [cantidadLikes, setCantidadLikes] = useState(0);
 
 	const handleToggleLike = () => {
 		if (liked) {
