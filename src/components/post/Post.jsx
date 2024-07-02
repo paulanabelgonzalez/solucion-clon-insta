@@ -8,7 +8,7 @@ export const Post = ({
 	userName,
 	profilePic,
 	postImg,
-	postDescripcion,
+	postDescription,
 }) => {
 	return (
 		<div className="post_contenedor">
@@ -22,7 +22,7 @@ export const Post = ({
 
 			<Likes />
 
-			<p className="post_descripcion">{postDescripcion}</p>
+			<p className="post_descripcion">{postDescription}</p>
 		</div>
 	);
 };

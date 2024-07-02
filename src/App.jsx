@@ -34,7 +34,7 @@ function App({ setIsLoggedIn }) {
 			<div className="contenedor_posteos" style={{ marginTop: "40px" }}>
 				{postsArray.map(
 					(
-						{ userName, seen, profilePic, postImg, postDescripcion, id },
+						{ userName, seen, profilePic, postImg, postDescription, id },
 						index
 					) => {
 						return (
@@ -43,7 +43,7 @@ function App({ setIsLoggedIn }) {
 								seen={seen}
 								profilePic={profilePic}
 								postImg={postImg}
-								postDescripcion={postDescripcion}
+								postDescription={postDescription}
 								key={`${id}-${index}`}
 							/>
 						);

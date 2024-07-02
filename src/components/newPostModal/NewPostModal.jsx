@@ -19,8 +19,12 @@ import {
 } from "@chakra-ui/react";
 
 import { v4 as uuidv4 } from "uuid";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
-import { posts } from "../../posts";
+import { validacionTexto } from "../../utils/Validaciones";
+
+// import { posts } from "../../posts";
 
 import { CgAddR } from "react-icons/cg";
 
@@ -30,28 +34,29 @@ export const NewPostModal = ({
 	setPostsArray,
 	postsArray,
 }) => {
-	const [input, setInput] = useState("");
-
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
-	const handleInputChange = (e) => setInput(e.target.value);
+	const {
+		register,
+		formState: { errors },
+		handleSubmit,
+	} = useForm({ criteriaMode: "all" });
+	// console.log(errors);
+	const onSubmit = (data) => {
+		console.log("objeto que crea la libreria:", data);
+		console.log("submit");
 
-	const isError = input === "";
-
-	const handleSubmitNewPost = (e) => {
-		e.preventDefault();
 		const newPost = {
 			id: uuidv4(),
 			seen: false,
 			userName: userName,
 			profilePic: profilePic,
-			postImg: e.target.imgPost.value,
-			postDescripcion: e.target.descripcionPost.value,
+			postImg: data.postImg,
+			postDescription: data.postDescription,
 		};
-		const upDatedPosts = [...postsArray, newPost];
-
-		console.log(upDatedPosts);
-		setPostsArray(upDatedPosts);
+		const upDatedPosts = [...postsArray, newPost]; //agregando el nuevo posteo al array de posteos.
+		console.log(upDatedPosts); //asegurarno que se nods este actualizando
+		setPostsArray(upDatedPosts); //para actualizar  la vista del array por medio deun estado (osea que se vaya imprimiendo el agregado)
 		onClose();
 	};
 
@@ -78,20 +83,62 @@ export const NewPostModal = ({
 						<VStack
 							as="form"
 							className="new_post__form"
-							onSubmit={handleSubmitNewPost}
+							onSubmit={handleSubmit(onSubmit)}
 						>
-							<FormControl isInvalid={isError}>
+							<FormControl isInvalid={errors.postImg ? true : false}>
 								<FormLabel>Imagen</FormLabel>
 								<Input
 									type="text"
-									onChange={handleInputChange}
-									name="imgPost"
+									name="postImg"
+									{...register("postImg", {
+										required: "La imagen es obligatoria.",
+										minLength: {
+											value: 3,
+											message: "La url es damsiado corta.",
+											// value: 10,
+										},
+										maxLength: {
+											value: 10,
+											message: "La url es demasiado extensa.",
+											// value: 10000,
+										},
+										pattern: {
+											value: /\d+/,
+											message: "Este input acepta solo números.",
+											// Para que funcione correctamente
+											// value: /^(ftp|http|https):\/\/[^ "]+$/,
+											// message: "Este input acepta solo direcciones url.",
+										},
+									})}
 								/>
-								<FormErrorMessage>La imagen es obligatoria</FormErrorMessage>
+								<ErrorMessage
+									errors={errors}
+									name="postImg" //este nombre es el que usamos en el register.
+									render={({ messages }) => {
+										console.log(messages);
+										return (
+											messages &&
+											Object.entries(messages).map(([type, message]) => (
+												<FormErrorMessage key={type}>
+													{message}
+												</FormErrorMessage>
+											))
+										);
+									}}
+								/>
 							</FormControl>
-							<FormControl mt="20px">
+							<FormControl
+								mt="20px"
+								isInvalid={errors.postDescription ? true : false} // si existe la propiedad de ese objeto se renderiza sino no.
+							>
 								<FormLabel>Descripción</FormLabel>
-								<Textarea name="descripcionPost" />
+								<Textarea
+									name="postDescription"
+									{...register("postDescription", { required: true })} //validacionTexto)} para hacerlo con hook form y traernos una constante.
+								/>
+								<FormErrorMessage>
+									La descripción es obligatoria.
+								</FormErrorMessage>
 							</FormControl>
 							<HStack mb="20px" mt="10px">
 								<Button
